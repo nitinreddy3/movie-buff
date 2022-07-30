@@ -3,17 +3,20 @@ import { Link, Outlet } from "react-router-dom";
 import { API_URL } from '../utils/constants';
 import Layout from './Layout';
 import { CenterAligned } from '../styles/Container';
+import Table from './Table';
 
 interface Movie
 {
-  imdbID: Key;
+  imdbID: string;
   Title: string;
+
+  Year: string;
 }
 
 const Movies = () =>
 {
 
-  const [ movies, setMovies ] = useState( [] );
+  const [ movies, setMovies ] = useState<[]>( [] );
 
   useEffect( () =>
   {
@@ -37,7 +40,7 @@ const Movies = () =>
   return ( <Layout>
     <h1>Movies</h1>
     <CenterAligned Vertical Horizontal>
-      <table>
+      {/* <table>
         <thead>
           <tr>
             <th>#</th>
@@ -60,6 +63,8 @@ const Movies = () =>
           <Outlet />
         </tbody>
       </table>
+       */}
+      <Table data={ movies } />
     </CenterAligned>
   </Layout> );
 };
