@@ -4,12 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import { API_URL } from '../utils/constants';
 import Layout from './Layout';
 import { CenterAligned } from '../styles/Container';
+import { MovieDetails } from '../interfaces';
 
-interface MovieDetails
-{
-  Title: string;
-
-}
 
 const Movie = () =>
 {
@@ -44,7 +40,7 @@ const Movie = () =>
         > Go back to Movies
         </Link>
       </p>
-      <h2>{ movieDetails?.Title }</h2>
+      <p>{ movieDetails?.Title }</p>
     </CenterAligned>
   </Layout > );
 };
