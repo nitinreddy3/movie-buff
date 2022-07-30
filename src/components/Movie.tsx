@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from "react-router-dom";
 import { API_URL } from '../utils/constants';
 import Layout from './Layout';
+import { CenterAligned } from '../styles/Container';
 
 interface MovieDetails
 {
@@ -35,12 +36,14 @@ const Movie = () =>
 
   return ( <Layout>
     <h1>Movie details</h1>
-    <p><Link
-      style={ { display: "block", margin: "1rem 0" } }
-      to={ `/` }
-    > Go back to Movies
-    </Link></p>
-    <h2>{ movieDetails?.Title }</h2>
+    <CenterAligned Vertical Horizontal>
+      <p><Link
+        style={ { display: "block", margin: "1rem 0" } }
+        to={ `/` }
+      > Go back to Movies
+      </Link></p>
+      <h2>{ movieDetails?.Title }</h2>
+    </CenterAligned>
   </Layout > );
 };
 
