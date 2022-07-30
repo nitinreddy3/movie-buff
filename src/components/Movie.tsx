@@ -37,11 +37,13 @@ const Movie = () =>
   return ( <Layout>
     <h1>Movie details</h1>
     <CenterAligned Vertical Horizontal>
-      <p><Link
-        style={ { display: "block", margin: "1rem 0" } }
-        to={ `/` }
-      > Go back to Movies
-      </Link></p>
+      <p>
+        <Link
+          style={ { display: "block", margin: "1rem 0" } }
+          to={ `/` }
+        > Go back to Movies
+        </Link>
+      </p>
       <h2>{ movieDetails?.Title }</h2>
     </CenterAligned>
   </Layout > );

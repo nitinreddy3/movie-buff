@@ -9,13 +9,11 @@ interface Props
 export const CenterAlignedVertical = css`
   display: flex;
   align-items: center;
-  // width: 1200px;
 `;
 
 export const CenterAlignedHorizontal = css`
   display: flex;
   justify-content: center;
-  // width: 1200px;
 `;
 
 export const CenterVerticalHorizontal = css`
