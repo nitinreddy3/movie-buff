@@ -1,23 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Routes, Route } from "react-router-dom";
+import Movies from './components/Movies';
+import Movie from './components/Movie';
 import './App.css';
 
 function App ()
 {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>Successfully Deployed <code>A React application</code> to Netlify with CircleCI</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="movies" element={ <Movies /> } />
+        <Route path="movies/:movieId" element={ <Movie /> } />
+        <Route
+          path="*"
+          element={
+            <main style={ { padding: "1rem" } }>
+              <p>There's nothing here!</p>
+            </main>
+          }
+        />
+      </Routes>
     </div>
   );
 }
