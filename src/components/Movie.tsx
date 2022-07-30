@@ -37,7 +37,7 @@ const Movie = () =>
     <h1>Movie details</h1>
     <p><Link
       style={ { display: "block", margin: "1rem 0" } }
-      to={ `/movies` }
+      to={ `/` }
     > Go back to Movies
     </Link></p>
     <h2>{ movieDetails?.Title }</h2>
