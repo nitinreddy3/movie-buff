@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { PageHeader, Descriptions, Image } from 'antd';
+import { PageHeader, Descriptions, Image, Spin } from 'antd';
 import { useParams, useNavigate } from "react-router-dom";
 import { API_URL } from '../utils/constants';
 import Layout from './Layout';
@@ -32,7 +32,7 @@ const Movie = () =>
     BoxOffice: '',
   };
   const [ movieDetails, setMovieDetails ] = useState<MovieDetails>( initialState );
-
+  const [ loading, setLoading ] = useState( false );
   useEffect( () =>
   {
     fetchMovieDetails();
@@ -40,15 +40,19 @@ const Movie = () =>
 
   const fetchMovieDetails = async () =>
   {
+    setLoading( true );
     try
     {
       const apiResponse = await fetch( `${ API_URL }?apikey=2638bbe6&type=movie&i=${ params.movieId }` );
       const data = await apiResponse.json();
       delete data.Ratings;
       setMovieDetails( data );
+      setLoading( false );
+
     } catch ( err )
     {
       console.error( err );
+      setLoading( false );
     }
   };
 
@@ -65,8 +69,13 @@ const Movie = () =>
       />
     </div>
     <Descriptions title="Movie Info" layout="vertical" bordered>
-      { Object.values( movieDetails ).length && Object.keys( movieDetails ).filter( i => i ).map( ( key ) =>
-        <Descriptions.Item label={ key } labelStyle={ { textAlign: 'left' } }>{ movieDetails[ key ] }</Descriptions.Item> ) }
+      {
+        loading ? <Spin /> :
+          <>{
+            Object.keys( movieDetails ).filter( i => ![ 'Poster', 'Website', 'Response' ].includes( i ) ).map( ( key ) =>
+              <Descriptions.Item label={ key } labelStyle={ { textAlign: 'left' } }>{ movieDetails[ key ] }</Descriptions.Item> )
+          }
+          </> }
     </Descriptions>
   </Layout > );
 };
