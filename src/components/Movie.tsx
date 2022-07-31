@@ -43,7 +43,7 @@ const Movie = () =>
     setLoading( true );
     try
     {
-      const apiResponse = await fetch( `${ API_URL }?apikey=2638bbe6&type=movie&i=${ params.movieId }` );
+      const apiResponse = await fetch( `${ API_URL }&i=${ params.movieId }` );
       const data = await apiResponse.json();
       setMovieDetails( data );
       setLoading( false );
