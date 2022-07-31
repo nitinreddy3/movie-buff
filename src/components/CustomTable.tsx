@@ -17,7 +17,7 @@ const columns: ColumnsType<Movie> = [
     key: 'Title',
     render: ( text, record ) => <Link
       style={ { display: "block", margin: "1rem 0" } }
-      to={ `/movies/${ record.imdbID }` }
+      to={ `/${ record.imdbID }` }
       key={ record.imdbID }
     >
       { text }

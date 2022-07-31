@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { API_URL } from '../utils/constants';
-import Layout from './Layout';
+import Layout from './common/Layout';
 import CustomTable from './CustomTable';
 
 const Movies = () =>

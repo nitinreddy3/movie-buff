@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { PageHeader, Descriptions, Image, Spin } from 'antd';
 import { useParams, useNavigate } from "react-router-dom";
 import { API_URL } from '../utils/constants';
-import Layout from './Layout';
+import Layout from './common/Layout';
 import { MovieDetails } from '../interfaces';
 
 
@@ -58,7 +58,7 @@ const Movie = () =>
   return ( <Layout>
     <PageHeader
       className="site-page-header"
-      onBack={ () => navigate( "/movies" ) }
+      onBack={ () => navigate( "/" ) }
       title={ `Movie title: ${ movieDetails.Title }` }
     />
     <div>

@@ -17,13 +17,24 @@ interface Movie
 
 const Table = ( { data }: Data ) =>
 {
-  const TableMarkup = ( { data }: Data ) => (
+  const renderMovieListItems = () => data.map( ( item: Movie ) => (
+    <tr key={ item?.imdbID }>
+      <td>
+        <Link
+          style={ { display: "block", margin: "1rem 0" } }
+          to={ `/${ item.imdbID }` }
+          key={ item.imdbID }
+        >
+          { item.Title }
+        </Link>
+      </td>
+      <td>{ item?.Year }</td>
+      <td>{ item?.imdbID }</td>
+    </tr>
+  ) );
+
+  const TableMarkup = () => (
     <StyledTable>
-      <colgroup>
-        <col />
-        <col />
-        <col />
-      </colgroup>
       <thead>
         <tr>
           <th >Title</th>
@@ -32,26 +43,13 @@ const Table = ( { data }: Data ) =>
         </tr>
       </thead>
       <tbody>
-        { data.map( ( item: Movie ) => (
-          <tr key={ item?.imdbID }>
-            <td>
-              <Link
-                style={ { display: "block", margin: "1rem 0" } }
-                to={ `/movies/${ item.imdbID }` }
-                key={ item.imdbID }
-              >
-                { item.Title }
-              </Link>
-            </td>
-            <td>{ item?.Year }</td>
-            <td>{ item?.imdbID }</td>
-          </tr>
-        ) ) }
+        { renderMovieListItems() }
         <Outlet />
       </tbody>
     </StyledTable>
   );
-  return <TableMarkup data={ data } />;
+
+  return <TableMarkup />;
 };
 
 export default Table;

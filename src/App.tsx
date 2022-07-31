@@ -10,8 +10,8 @@ function App ()
   return (
     <div className="App">
       <Routes>
-        <Route path="/movies" element={ <Movies /> } />
-        <Route path="movies/:movieId" element={ <Movie /> } />
+        <Route path="/" element={ <Movies /> } />
+        <Route path="/:movieId" element={ <Movie /> } />
         <Route
           path="*"
           element={
