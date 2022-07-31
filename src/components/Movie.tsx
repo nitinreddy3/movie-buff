@@ -45,7 +45,6 @@ const Movie = () =>
     {
       const apiResponse = await fetch( `${ API_URL }?apikey=2638bbe6&type=movie&i=${ params.movieId }` );
       const data = await apiResponse.json();
-      delete data.Ratings;
       setMovieDetails( data );
       setLoading( false );
 
@@ -72,7 +71,7 @@ const Movie = () =>
       {
         loading ? <Spin /> :
           <>{
-            Object.keys( movieDetails ).filter( i => ![ 'Poster', 'Website', 'Response' ].includes( i ) ).map( ( key ) =>
+            Object.keys( movieDetails ).filter( i => ![ 'Poster', 'Website', 'Response', 'Ratings' ].includes( i ) ).map( ( key ) =>
               <Descriptions.Item label={ key } labelStyle={ { textAlign: 'left' } }>{ movieDetails[ key ] }</Descriptions.Item> )
           }
           </> }
