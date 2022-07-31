@@ -1,19 +1,25 @@
 import React from 'react';
 import { Col, Row } from 'antd';
 import Header from './Header';
+import { Content } from 'antd/lib/layout/layout';
 
 type LayoutProps =
   {
     children: React.ReactNode;
   };
 
-const Layout = ( props: LayoutProps ) => ( <div>
+const Layout = ( props: LayoutProps ) => ( <>
   <Header />
-  <Row>
-    <Col span={ 12 } offset={ 6 }>
+  <Content style={ { padding: '0 50px' } }>
+    <div className="site-layout-content">
+
       { props.children }
-    </Col>
-  </Row>
-</div> );
+    </div>
+    {/* <Row>
+      <Col span={ 12 } offset={ 3 }>
+      </Col>
+    </Row> */}
+  </Content>
+</> );
 
 export default Layout;

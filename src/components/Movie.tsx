@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from "react-router-dom";
+import { PageHeader, Descriptions, Image } from 'antd';
+import { useParams, useNavigate } from "react-router-dom";
 import { API_URL } from '../utils/constants';
 import Layout from './Layout';
 import { MovieDetails } from '../interfaces';
@@ -9,7 +10,28 @@ import { MovieDetails } from '../interfaces';
 const Movie = () =>
 {
   let params = useParams();
-  const [ movieDetails, setMovieDetails ] = useState<MovieDetails>( { Title: '' } );
+  let navigate = useNavigate();
+  const initialState = {
+    Title: '',
+    Year: '',
+    Rated: '',
+    Released: '',
+    Runtime: '',
+    Genre: '',
+    Director: '',
+    Writer: '',
+    Actors: '',
+    Plot: '',
+    Language: '',
+    Country: '',
+    Awards: '',
+    Poster: '',
+    imdbRating: '',
+    imdbVotes: '',
+    DVD: '',
+    BoxOffice: '',
+  };
+  const [ movieDetails, setMovieDetails ] = useState<MovieDetails>( initialState );
 
   useEffect( () =>
   {
@@ -22,6 +44,7 @@ const Movie = () =>
     {
       const apiResponse = await fetch( `${ API_URL }?apikey=2638bbe6&type=movie&i=${ params.movieId }` );
       const data = await apiResponse.json();
+      delete data.Ratings;
       setMovieDetails( data );
     } catch ( err )
     {
@@ -30,15 +53,21 @@ const Movie = () =>
   };
 
   return ( <Layout>
-    <h1>Movie details</h1>
-    <p>
-      <Link
-        style={ { display: "block", margin: "1rem 0" } }
-        to={ `/` }
-      > Go back to Movies
-      </Link>
-    </p>
-    <p>{ movieDetails?.Title }</p>
+    <PageHeader
+      className="site-page-header"
+      onBack={ () => navigate( "/movies" ) }
+      title={ `Movie title: ${ movieDetails.Title }` }
+    />
+    <div>
+      <Image
+        width={ 200 }
+        src={ movieDetails.Poster }
+      />
+    </div>
+    <Descriptions title="Movie Info" layout="vertical" bordered>
+      { Object.values( movieDetails ).length && Object.keys( movieDetails ).filter( i => i ).map( ( key ) =>
+        <Descriptions.Item label={ key } labelStyle={ { textAlign: 'left' } }>{ movieDetails[ key ] }</Descriptions.Item> ) }
+    </Descriptions>
   </Layout > );
 };
 
