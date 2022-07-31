@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { API_URL } from '../utils/constants';
 import Layout from './Layout';
-import { CenterAligned } from '../styles/Container';
-import Table from './Table';
-
+import CustomTable from './CustomTable';
 
 const Movies = () =>
 {
@@ -31,9 +29,7 @@ const Movies = () =>
 
   return ( <Layout>
     <h1>Movies</h1>
-    <CenterAligned Vertical Horizontal>
-      <Table data={ movies } />
-    </CenterAligned>
+    <CustomTable data={ movies } />
   </Layout> );
 };
 
