@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'antd';
+import { Table, Image } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { Movie } from '../interfaces/index';
 import { Link } from 'react-router-dom';
@@ -11,6 +11,17 @@ interface Props
 
 // Table columns
 const columns: ColumnsType<Movie> = [
+  {
+    title: 'Preview',
+    dataIndex: 'Poster',
+    key: 'Poster',
+    render: ( text ) => (
+      <Image
+        width={ 40 }
+        src={ text }
+      />
+    ),
+  },
   {
     title: 'Title',
     dataIndex: 'Title',
@@ -31,12 +42,6 @@ const columns: ColumnsType<Movie> = [
     key: 'Year',
     render: ( value ) => Number( value ),
     sorter: ( a, b ) => Number( a.Year ) - Number( b.Year )
-  },
-  {
-    title: 'imdbID',
-    dataIndex: 'imdbID',
-    key: 'imdbID',
-    sorter: ( a, b ) => Number( a.imdbID ) - Number( b.imdbID )
   }
 ];
 
