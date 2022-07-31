@@ -1,3 +1,6 @@
+![MovieBuffLogo-removebg-preview](https://user-images.githubusercontent.com/5886208/182040794-88132746-855a-4e6a-b8e9-7f4ceb2ad78b.png)
+
+
 # Movie buff
 Live at [https://mo-vbluf.netlify.app](https://mo-vbluf.netlify.app/)
 
